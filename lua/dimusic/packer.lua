@@ -66,6 +66,11 @@ return require('packer').startup(function(use)
 		}
 	}
 
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = { "nvim-lua/plenary.nvim" },
+    }
+
     use 'onsails/lspkind.nvim'
 
     use {
@@ -99,4 +104,8 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+
+    use "lukas-reineke/indent-blankline.nvim"
+
+    
 end)

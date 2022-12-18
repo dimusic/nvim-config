@@ -2,6 +2,8 @@
 
 vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 
+vim.opt.clipboard = "unnamedplus"
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -29,6 +31,7 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 100
 
+vim.opt.cursorline = true
 vim.opt.colorcolumn = "120"
 
 vim.g.mapleader = " "
@@ -36,6 +39,11 @@ vim.g.mapleader = " "
 vim.opt.incsearch = true
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
+
+vim.opt.history = 100
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 vim.g.everforest_background = "hard"
 --vim.g.everforest_better_performance = 1
