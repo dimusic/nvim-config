@@ -14,17 +14,17 @@ local source_mapping = {
     cmp_tabnine = "🐒",
     copilot = "🐔",
     nvim_lsp_signature_help = "🐷",
-    nvim_lsp = "λsp🐓",
+    -- nvim_lsp = "λsp🐓",
+    nvim_lsp = "🐓",
     vsnip = "⋗",
     buffer = "🍌",
     path = "📁",
 }
 
 local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({})
 
 lsp.setup_nvim_cmp({
+    preselect = cmp.PreselectMode.None,
     formatting = {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, vim_item)
@@ -99,8 +99,6 @@ lsp.on_attach(function(client, bufnr)
     end, { buffer = bufnr, remap = false, desc = "Signature Help" })
 end)
 
-lsp.setup()
-
 require("rust-tools").setup({
     server = rust_lsp,
     checkOnSave = {
@@ -108,3 +106,5 @@ require("rust-tools").setup({
         command = "clippy",
     },
 })
+
+lsp.setup()
