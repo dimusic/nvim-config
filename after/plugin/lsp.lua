@@ -49,10 +49,6 @@ lsp.setup_nvim_cmp({
     --mapping = cmp_mappings
 })
 
-vim.diagnostic.config({
-    virtual_text = true,
-})
-
 -- vim.cmd([[
 --     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- ]])
@@ -101,10 +97,15 @@ end)
 
 require("rust-tools").setup({
     server = rust_lsp,
-    checkOnSave = {
-        allFeatures = true,
-        command = "clippy",
-    },
 })
 
 lsp.setup()
+
+vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+
+vim.diagnostic.config({
+    virtual_text = true,
+})

@@ -25,7 +25,3 @@ vim.keymap.set("n", "<C-H>", "<C-W>h")
 vim.keymap.set("n", "<C-J>", "<C-W>j")
 vim.keymap.set("n", "<C-K>", "<C-W>k")
 vim.keymap.set("n", "<C-L>", "<C-W>l")
-
--- File Tree
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File Tree" })
-vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal File" })
