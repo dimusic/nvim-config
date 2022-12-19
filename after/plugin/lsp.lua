@@ -11,7 +11,8 @@ lsp.ensure_installed({
 })
 
 local source_mapping = {
-    cmp_tabnine = "🐒",
+    -- cmp_tabnine = "🐒",
+    cmp_tabnine = "🤖",
     copilot = "🐔",
     nvim_lsp_signature_help = "🐷",
     -- nvim_lsp = "λsp🐓",
@@ -24,6 +25,13 @@ local source_mapping = {
 local cmp = require("cmp")
 
 lsp.setup_nvim_cmp({
+    sources = {
+        { name = "cmp_tabnine" },
+        { name = "path" },
+        { name = "nvim_lsp", keyword_length = 3 },
+        { name = "buffer", keyword_length = 3 },
+    },
+
     preselect = cmp.PreselectMode.None,
 
     formatting = {
