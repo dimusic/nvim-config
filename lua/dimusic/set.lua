@@ -1,6 +1,6 @@
 --vim.opt.guicursor = ""
 
--- vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 
 -- vim.opt.clipboard = "unnamedplus"
 

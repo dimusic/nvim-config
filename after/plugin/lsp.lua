@@ -25,6 +25,7 @@ local cmp = require("cmp")
 
 lsp.setup_nvim_cmp({
     preselect = cmp.PreselectMode.None,
+
     formatting = {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, vim_item)
@@ -109,3 +110,5 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSig
 vim.diagnostic.config({
     virtual_text = true,
 })
+
+require("fidget").setup({})

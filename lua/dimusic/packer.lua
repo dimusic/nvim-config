@@ -119,4 +119,11 @@ return require("packer").startup(function(use)
             "MunifTanjim/nui.nvim",
         },
     })
+
+    use("j-hui/fidget.nvim")
+
+    use({
+        "akinsho/toggleterm.nvim",
+        tag = "*",
+    })
 end)
