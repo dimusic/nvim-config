@@ -28,6 +28,7 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
+vim.opt.cmdheight = 0
 
 vim.opt.updatetime = 100
 
