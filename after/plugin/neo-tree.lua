@@ -11,6 +11,10 @@ end, { desc = "Reveal File" })
 require("neo-tree").setup({
     -- enable_diagnostics = false,
 
+    window = {
+        width = 25,
+    },
+
     default_component_configs = {
         modified = {
             -- symbol = "[+]",
