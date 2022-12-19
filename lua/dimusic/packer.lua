@@ -137,5 +137,12 @@ return require("packer").startup(function(use)
 
     use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
+    use("vim-scripts/zoom.vim")
+
     use("wakatime/vim-wakatime")
+
+    use({
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+    })
 end)
