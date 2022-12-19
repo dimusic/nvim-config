@@ -139,8 +139,6 @@ return require("packer").startup(function(use)
 
     use("vim-scripts/zoom.vim")
 
-    use("wakatime/vim-wakatime")
-
     use({
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -154,4 +152,8 @@ return require("packer").startup(function(use)
             require("nvim-ts-autotag").setup()
         end,
     })
+
+    use("mrjones2014/smart-splits.nvim")
+
+    use("wakatime/vim-wakatime")
 end)
