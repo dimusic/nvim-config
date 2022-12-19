@@ -147,4 +147,11 @@ return require("packer").startup(function(use)
     })
 
     use("lewis6991/gitsigns.nvim")
+
+    use({
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require("nvim-ts-autotag").setup()
+        end,
+    })
 end)
