@@ -25,12 +25,13 @@ local source_mapping = {
 local cmp = require("cmp")
 
 lsp.setup_nvim_cmp({
-    sources = {
-        { name = "cmp_tabnine" },
+    sources = cmp.config.sources({
+        { name = "cmp_tabnine", keyword_length = 2 },
         { name = "path" },
-        { name = "nvim_lsp", keyword_length = 3 },
-        { name = "buffer", keyword_length = 3 },
-    },
+        { name = "nvim_lsp", keyword_length = 2, max_item_count = 5 },
+    }, {
+        { name = "buffer", keyword_length = 3, max_item_count = 3 },
+    }),
 
     preselect = cmp.PreselectMode.None,
 
