@@ -21,6 +21,7 @@ vim.keymap.set("n", "<leader>ff", function()
 end, { desc = "Find files" })
 vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Find files" })
 
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Search help" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "File history" })
 vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Live grep" })
