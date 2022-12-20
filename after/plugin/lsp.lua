@@ -22,6 +22,16 @@ local source_mapping = {
     path = "📁",
 }
 
+lsp.configure("sumneko_lua", {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+        },
+    },
+})
+
 local cmp = require("cmp")
 
 lsp.setup_nvim_cmp({
