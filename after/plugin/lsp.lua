@@ -38,7 +38,7 @@ lsp.setup_nvim_cmp({
     sources = cmp.config.sources({
         { name = "cmp_tabnine", keyword_length = 2 },
         { name = "path" },
-        { name = "nvim_lsp", keyword_length = 2, max_item_count = 5 },
+        { name = "nvim_lsp", keyword_length = 2, max_item_count = 20 },
     }, {
         { name = "buffer", keyword_length = 3, max_item_count = 3 },
     }),
