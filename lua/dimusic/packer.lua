@@ -131,5 +131,7 @@ return require("packer").startup(function(use)
     use("mrjones2014/smart-splits.nvim")
     use("folke/zen-mode.nvim")
 
+    use("RRethy/vim-illuminate")
+
     use("wakatime/vim-wakatime")
 end)
