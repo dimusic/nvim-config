@@ -14,6 +14,10 @@ require("nvim-tree").setup({
     filters = {
         -- dotfiles = true,
     },
+
+    git = {
+        ignore = false,
+    },
 })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File Tree Toggle" })
 vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal File" })
