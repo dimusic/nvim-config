@@ -141,12 +141,5 @@ return require("packer").startup(function(use)
 
     use("RRethy/vim-illuminate")
 
-    use({
-        "sunjon/shade.nvim",
-        config = function()
-            require("shade").setup()
-        end,
-    })
-
     use("wakatime/vim-wakatime")
 end)
