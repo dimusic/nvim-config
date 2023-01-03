@@ -18,6 +18,14 @@ require("nvim-tree").setup({
     git = {
         ignore = false,
     },
+
+    filesystem_watchers = {
+        ignore_dirs = {
+            "target",
+            "dist",
+            "build",
+        },
+    },
 })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File Tree Toggle" })
 vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal File" })
