@@ -116,11 +116,11 @@ lsp.on_attach(function(client, bufnr)
         vim.lsp.buf.hover()
     end, { buffer = bufnr, remap = false, desc = "Hover Definition" })
 
-    vim.keymap.set("n", "[d", function()
+    vim.keymap.set("n", "]d", function()
         vim.diagnostic.goto_next()
     end, { buffer = bufnr, remap = false, desc = "Next Diagnostic" })
 
-    vim.keymap.set("n", "]d", function()
+    vim.keymap.set("n", "[d", function()
         vim.diagnostic.goto_prev()
     end, { buffer = bufnr, remap = false, desc = "Prev Diagnostic" })
 
