@@ -2,9 +2,7 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
-local rust_lsp = lsp.build_options("rust-analyzer", {
-    inlayHints = { locationLinks = false },
-})
+local rust_lsp = lsp.build_options("rust-analyzer", {})
 
 lsp.ensure_installed({
     "tsserver",
