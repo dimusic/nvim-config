@@ -50,17 +50,24 @@ vim.opt.splitright = true
 vim.g.everforest_background = "hard"
 vim.g.everforest_better_performance = 1
 
-vim.cmd([[
-let g:clipboard = {
-  \ 'name': 'WslClipboard',
-  \ 'copy': {
-  \   '+': '/mnt/c/Windows/System32/clip.exe -i --crlf',
-  \   '*': '/mnt/c/Windows/System32/clip.exe -i --crlf',
-  \ },
-  \   'paste': {
-  \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-  \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-  \   },
-  \ 'cache_enabled': 0
-  \ }
-]])
+local is_wsl = (function()
+    local output = vim.fn.systemlist("uname -r")
+    return not not string.find(output[1] or "", "WSL")
+end)()
+
+if is_wsl then
+    vim.cmd([[
+    let g:clipboard = {
+      \ 'name': 'WslClipboard',
+      \ 'copy': {
+      \   '+': '/mnt/c/Windows/System32/clip.exe -i --crlf',
+      \   '*': '/mnt/c/Windows/System32/clip.exe -i --crlf',
+      \ },
+      \   'paste': {
+      \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      \   },
+      \ 'cache_enabled': 0
+      \ }
+    ]])
+end
