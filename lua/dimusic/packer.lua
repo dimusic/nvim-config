@@ -44,7 +44,7 @@ return require("packer").startup(function(use)
     -- })
 
     use({
-        "https://github.com/kdarkhan/rust-tools.nvim",
+        "kdarkhan/rust-tools.nvim",
         commit = "a47f5d61ce06a433998fb5711f723773e3156f46",
         config = function()
             local rt = require("rust-tools")
