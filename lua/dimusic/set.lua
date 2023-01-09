@@ -60,8 +60,8 @@ if is_wsl then
     let g:clipboard = {
       \ 'name': 'WslClipboard',
       \ 'copy': {
-      \   '+': '/mnt/c/Windows/System32/clip.exe -i --crlf',
-      \   '*': '/mnt/c/Windows/System32/clip.exe -i --crlf',
+      \   '+': '/mnt/c/Windows/System32/clip.exe',
+      \   '*': '/mnt/c/Windows/System32/clip.exe',
       \ },
       \   'paste': {
       \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
