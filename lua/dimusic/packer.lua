@@ -25,27 +25,8 @@ return require("packer").startup(function(use)
     use("theprimeagen/harpoon")
     use("mbbill/undotree")
 
-    -- use({
-    --     "simrat39/rust-tools.nvim",
-    --     config = function()
-    --         local rt = require("rust-tools")
-    --
-    --         rt.setup({
-    --             server = {
-    --                 on_attach = function(_, bufnr)
-    --                     -- Hover actions
-    --                     vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-    --                     -- Code action groups
-    --                     --vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    --                 end,
-    --             },
-    --         })
-    --     end,
-    -- })
-
     use({
-        "kdarkhan/rust-tools.nvim",
-        commit = "a47f5d61ce06a433998fb5711f723773e3156f46",
+        "simrat39/rust-tools.nvim",
         config = function()
             local rt = require("rust-tools")
 
