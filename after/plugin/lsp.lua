@@ -55,6 +55,8 @@ lsp.setup_nvim_cmp({
         completeopt = "menu,menuone,noinsert,noselect",
     },
 
+    preselect = cmp.PreselectMode.None,
+
     formatting = {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, vim_item)
