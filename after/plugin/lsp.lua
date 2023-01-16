@@ -1,6 +1,6 @@
 local lsp = require("lsp-zero")
 
-lsp.preset("recommended")
+lsp.preset("lsp-compe")
 
 local rust_lsp = lsp.build_options("rust-analyzer", {})
 
@@ -44,64 +44,6 @@ local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
-
-lsp.setup_nvim_cmp({
-    sources = cmp.config.sources({
-        { name = "copilot" },
-        -- { name = "cmp_tabnine" },
-        { name = "path" },
-        { name = "nvim_lsp", keyword_length = 2, max_item_count = 20 },
-    }, {
-        { name = "buffer", keyword_length = 3, max_item_count = 3 },
-    }),
-
-    completion = {
-        completeopt = "menu,menuone,noinsert,noselect",
-    },
-
-    preselect = cmp.PreselectMode.None,
-
-    formatting = {
-        fields = { "menu", "abbr", "kind" },
-        format = function(entry, vim_item)
-            vim_item.kind = require("lspkind").symbolic(vim_item.kind, { mode = "symbol" })
-            vim_item.menu = source_mapping[entry.source.name]
-            if entry.source.name == "cmp_tabnine" then
-                local detail = (entry.completion_item.data or {}).detail
-                vim_item.kind = ""
-                if detail and detail:find(".*%%.*") then
-                    vim_item.kind = vim_item.kind .. " " .. detail
-                end
-
-                if (entry.completion_item.data or {}).multiline then
-                    vim_item.kind = vim_item.kind .. " " .. "[ML]"
-                end
-            end
-            local maxwidth = 80
-            vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
-            return vim_item
-        end,
-    },
-
-    mapping = lsp.defaults.cmp_mappings({
-        ["<CR>"] = cmp.mapping.confirm({
-            -- this is the important line
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-        }),
-        ["<Tab>"] = vim.schedule_wrap(function(fallback)
-            if cmp.visible() and has_words_before() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-                fallback()
-            end
-        end),
-    }),
-})
-
--- vim.cmd([[
---     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
--- ]])
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -159,6 +101,62 @@ require("rust-tools").setup({
 
 lsp.setup()
 
+local cmp_config = lsp.defaults.cmp_config({
+    sources = cmp.config.sources({
+        { name = "copilot" },
+        -- { name = "cmp_tabnine" },
+        { name = "path" },
+        { name = "nvim_lsp", keyword_length = 2, max_item_count = 20 },
+    }, {
+        { name = "buffer", keyword_length = 3, max_item_count = 3 },
+    }),
+
+    -- preselect = cmp.PreselectMode.None,
+
+    window = {
+        completion = cmp.config.window.bordered(),
+    },
+
+    formatting = {
+        fields = { "menu", "abbr", "kind" },
+        format = function(entry, vim_item)
+            vim_item.kind = require("lspkind").symbolic(vim_item.kind, { mode = "symbol" })
+            vim_item.menu = source_mapping[entry.source.name]
+            if entry.source.name == "cmp_tabnine" then
+                local detail = (entry.completion_item.data or {}).detail
+                vim_item.kind = ""
+                if detail and detail:find(".*%%.*") then
+                    vim_item.kind = vim_item.kind .. " " .. detail
+                end
+
+                if (entry.completion_item.data or {}).multiline then
+                    vim_item.kind = vim_item.kind .. " " .. "[ML]"
+                end
+            end
+            local maxwidth = 80
+            vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+            return vim_item
+        end,
+    },
+
+    mapping = lsp.defaults.cmp_mappings({
+        ["<CR>"] = cmp.mapping.confirm({
+            -- this is the important line
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        }),
+        ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            if cmp.visible() and has_words_before() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                fallback()
+            end
+        end),
+    }),
+})
+
+cmp.setup(cmp_config)
+
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,
@@ -167,5 +165,9 @@ vim.diagnostic.config({
     severity_sort = true,
     float = true,
 })
+
+vim.cmd([[
+    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
 
 require("fidget").setup({})
