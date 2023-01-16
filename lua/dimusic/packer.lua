@@ -161,5 +161,10 @@ return require("packer").startup(function(use)
 
     use("RRethy/vim-illuminate")
 
+    use({
+        "Shatur/neovim-session-manager",
+        requires = { { "nvim-lua/plenary.nvim" } },
+    })
+
     use("wakatime/vim-wakatime")
 end)
