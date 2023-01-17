@@ -71,7 +71,12 @@ lsp.on_attach(function(client, bufnr)
     end, { buffer = bufnr, remap = false, desc = "Prev Diagnostic" })
 
     vim.keymap.set("n", "<leader>ld", function()
-        vim.diagnostic.open_float()
+        vim.diagnostic.open_float({
+            border = "rounded",
+            source = "always",
+            -- prefix = "",
+            scope = "line",
+        })
     end, { buffer = bufnr, remap = false, desc = "Hover diagnostics" })
 
     vim.keymap.set("n", "<leader>lf", function()
@@ -166,8 +171,8 @@ vim.diagnostic.config({
     float = true,
 })
 
-vim.cmd([[
-    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
+-- vim.cmd([[
+--     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+-- ]])
 
 require("fidget").setup({})
