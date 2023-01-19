@@ -1,14 +1,14 @@
 require("telescope").setup({
     defaults = {
         path_display = { "truncate" },
-    },
 
-    mappings = {
-        i = {
-            ["<C-n>"] = require("telescope.actions").cycle_history_next,
-            ["<C-p>"] = require("telescope.actions").cycle_history_prev,
-            ["<C-j>"] = require("telescope.actions").move_selection_next,
-            ["<C-k>"] = require("telescope.actions").move_selection_previous,
+        mappings = {
+            i = {
+                ["<C-n>"] = require("telescope.actions").cycle_history_next,
+                ["<C-p>"] = require("telescope.actions").cycle_history_prev,
+                ["<C-j>"] = require("telescope.actions").move_selection_next,
+                ["<C-k>"] = require("telescope.actions").move_selection_previous,
+            },
         },
     },
 
