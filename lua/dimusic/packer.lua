@@ -166,5 +166,10 @@ return require("packer").startup(function(use)
         requires = { { "nvim-lua/plenary.nvim" } },
     })
 
+    use({
+        "Eandrju/cellular-automaton.nvim",
+        config = function() end,
+    })
+
     use("wakatime/vim-wakatime")
 end)
