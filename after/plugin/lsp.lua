@@ -95,6 +95,14 @@ lsp.on_attach(function(client, bufnr)
         vim.lsp.buf.rename()
     end, { buffer = bufnr, remap = false, desc = "Rename" })
 
+    vim.keymap.set("n", "<leader>lhe", function()
+        require("rust-tools").inlay_hints.enable()
+    end, { buffer = bufnr, remap = false, desc = "Enable Rust Tools Inlay Hints" })
+
+    vim.keymap.set("n", "<leader>lhd", function()
+        require("rust-tools").inlay_hints.disable()
+    end, { buffer = bufnr, remap = false, desc = "Disable Rust Tools Inlay Hints" })
+
     vim.keymap.set("i", "<C-h>", function()
         vim.lsp.buf.signature_help()
     end, { buffer = bufnr, remap = false, desc = "Signature Help" })
