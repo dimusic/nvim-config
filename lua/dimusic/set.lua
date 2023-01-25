@@ -50,6 +50,8 @@ vim.opt.splitright = true
 vim.g.everforest_background = "hard"
 vim.g.everforest_better_performance = 1
 
+vim.g.rustfmt_autosave = 1
+
 local is_wsl = (function()
     local output = vim.fn.systemlist("uname -r")
     return not not string.find(output[1] or "", "WSL")
