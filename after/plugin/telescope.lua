@@ -28,6 +28,7 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzf")
+require("telescope").load_extension("aerial")
 
 local builtin = require("telescope.builtin")
 
@@ -50,3 +51,6 @@ vim.keymap.set("n", "<leader>fW", function()
         end,
     })
 end, { desc = "Live grep (all files)" })
+vim.keymap.set("n", "<leader>ls", function()
+    require("telescope").extensions.aerial.aerial()
+end, { desc = "Search symbols" })

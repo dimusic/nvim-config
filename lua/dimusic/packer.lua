@@ -180,5 +180,12 @@ return require("packer").startup(function(use)
         ft = { "markdown" },
     })
 
+    use({
+        "stevearc/aerial.nvim",
+        config = function()
+            require("aerial").setup()
+        end,
+    })
+
     use("wakatime/vim-wakatime")
 end)
