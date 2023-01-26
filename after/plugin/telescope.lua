@@ -8,6 +8,10 @@ require("telescope").setup({
                 ["<C-p>"] = require("telescope.actions").cycle_history_prev,
                 ["<C-j>"] = require("telescope.actions").move_selection_next,
                 ["<C-k>"] = require("telescope.actions").move_selection_previous,
+                ["<C-x>"] = require("telescope.actions").delete_buffer,
+            },
+            n = {
+                ["<C-x>"] = require("telescope.actions").delete_buffer,
             },
         },
     },
