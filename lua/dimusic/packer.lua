@@ -188,17 +188,7 @@ return require("packer").startup(function(use)
 
     use({
         "karb94/neoscroll.nvim",
-        config = function()
-            require("neoscroll").setup({
-                performance_mode = true,
-            })
-
-            local t = {}
-            t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "500" } }
-            t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "500" } }
-
-            require("neoscroll.config").set_mappings(t)
-        end,
+        config = function() end,
     })
 
     use("wakatime/vim-wakatime")
