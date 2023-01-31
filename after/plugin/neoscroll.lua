@@ -1,5 +1,5 @@
 require("neoscroll").setup({
-    performance_mode = true,
+    performance_mode = false,
     mappings = { "<C-u>", "<C-d>", "<C-f>", "<C-b>", "zz", "zt", "zb" },
 })
 

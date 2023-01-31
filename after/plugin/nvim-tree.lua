@@ -16,7 +16,7 @@ require("nvim-tree").setup({
     },
 
     git = {
-        ignore = false,
+        ignore = true,
     },
 
     filesystem_watchers = {
@@ -24,6 +24,7 @@ require("nvim-tree").setup({
             "target",
             "dist",
             "build",
+            "node_modules",
         },
     },
 })
