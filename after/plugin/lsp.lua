@@ -124,7 +124,11 @@ local cmp_config = lsp.defaults.cmp_config({
         { name = "buffer", keyword_length = 3, max_item_count = 3 },
     }),
 
-    -- preselect = cmp.PreselectMode.None,
+    performance = {
+        debounce = 80,
+    },
+
+    preselect = cmp.PreselectMode.None,
 
     window = {
         completion = cmp.config.window.bordered(),
