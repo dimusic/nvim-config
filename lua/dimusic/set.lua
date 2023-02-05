@@ -48,9 +48,6 @@ vim.opt.history = 100
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.g.everforest_background = "hard"
-vim.g.everforest_better_performance = 1
-
 vim.g.rustfmt_autosave = 1
 
 local is_wsl = (function()

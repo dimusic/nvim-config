@@ -11,12 +11,24 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     })
+
+    -- Colorschemes
     use({
         "sainnhe/everforest",
         config = function()
             --	vim.cmd('colorscheme everforest')
         end,
     })
+    use({
+        "rose-pine/neovim",
+        as = "rose-pine",
+        config = function() end,
+    })
+    use({
+        "junegunn/seoul256.vim",
+        as = "seoul256",
+    })
+
     use({
         "nvim-treesitter/nvim-treesitter",
         -- run = ":TSUpdate",
