@@ -28,6 +28,7 @@ return require("packer").startup(function(use)
         "junegunn/seoul256.vim",
         as = "seoul256",
     })
+    use({ "catppuccin/nvim", as = "catppuccin" })
 
     use({
         "nvim-treesitter/nvim-treesitter",

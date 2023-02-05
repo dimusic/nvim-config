@@ -11,14 +11,11 @@ function Colorize(color)
     vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 
-    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "#383738" })
+    -- vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "#383738" })
 
     vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
     vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
     vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
-    vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-    vim.api.nvim_set_hl(0, "StatusLineTermNC", { bg = "none" })
 
     vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = "none" })
     vim.api.nvim_set_hl(0, "GitSignsAddLn", { bg = "none" })
@@ -37,6 +34,16 @@ function Colorize(color)
     vim.api.nvim_set_hl(0, "GitSignsStagedAddLn", { bg = "none" })
     vim.api.nvim_set_hl(0, "GitSignsStagedAddNr", { bg = "none" })
     vim.api.nvim_set_hl(0, "GitSignsStagedAddNr", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsChangedelete", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsStagedChange", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsChangeLnInline", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsChangedeleteLn", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsChangedeleteNr", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsStagedChangeLn", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsStagedChangeNr", { bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsStagedChangedelete", { bg = "none" })
+
     vim.api.nvim_set_hl(0, "SignifySignAdd", { bg = "none" })
     vim.api.nvim_set_hl(0, "SignifySignChange", { bg = "none" })
     vim.api.nvim_set_hl(0, "SignifySignDelete", { bg = "none" })
@@ -56,5 +63,12 @@ vim.g.everforest_better_performance = 1
 
 -- require("rose-pine").setup()
 
-Colorize("seoul256")
--- Colorize()
+-- Colorize("seoul256")
+Colorize()
+
+-- require("catppuccin").setup({
+--     flavour = "mocha",
+--     transparent_background = true,
+--     show_end_of_buffer = true,
+-- })
+-- Colorize("catppuccin")
