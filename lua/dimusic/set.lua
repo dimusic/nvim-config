@@ -4,7 +4,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 
 -- vim.opt.clipboard = "unnamedplus"
 
-vim.opt.hidden = false
+-- vim.opt.hidden = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
