@@ -6,7 +6,6 @@ local rust_lsp = lsp.build_options("rust-analyzer", {})
 
 lsp.ensure_installed({
     "tsserver",
-    "sumneko_lua",
     "rust_analyzer",
 })
 
