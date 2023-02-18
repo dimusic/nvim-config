@@ -136,25 +136,25 @@ return require("packer").startup(function(use)
     use({
         "feline-nvim/feline.nvim",
     })
-    -- use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+    use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
     -- copilot
-    use({
-        "zbirenbaum/copilot.lua",
-        event = "VimEnter",
-        config = function()
-            vim.defer_fn(function()
-                require("copilot").setup()
-            end, 100)
-        end,
-    })
-    use({
-        "zbirenbaum/copilot-cmp",
-        after = { "copilot.lua" },
-        config = function()
-            require("copilot_cmp").setup()
-        end,
-    })
+    -- use({
+    --     "zbirenbaum/copilot.lua",
+    --     event = "VimEnter",
+    --     config = function()
+    --         vim.defer_fn(function()
+    --             require("copilot").setup()
+    --         end, 100)
+    --     end,
+    -- })
+    -- use({
+    --     "zbirenbaum/copilot-cmp",
+    --     after = { "copilot.lua" },
+    --     config = function()
+    --         require("copilot_cmp").setup()
+    --     end,
+    -- })
 
     use("vim-scripts/zoom.vim")
     use({

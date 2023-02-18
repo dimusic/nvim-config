@@ -115,13 +115,28 @@ lsp.setup()
 
 local cmp_config = lsp.defaults.cmp_config({
     sources = cmp.config.sources({
-        { name = "copilot" },
-        -- { name = "cmp_tabnine" },
+        -- { name = "copilot" },
+        { name = "cmp_tabnine" },
         { name = "path" },
         { name = "nvim_lsp", keyword_length = 2, max_item_count = 20 },
     }, {
         { name = "buffer", keyword_length = 3, max_item_count = 3 },
     }),
+
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            require("cmp_tabnine.compare"),
+            require("cmp.config.compare").offset,
+            require("cmp.config.compare").exact,
+            require("cmp.config.compare").score,
+            require("cmp.config.compare").recently_used,
+            require("cmp.config.compare").kind,
+            require("cmp.config.compare").sort_text,
+            require("cmp.config.compare").length,
+            require("cmp.config.compare").order,
+        },
+    },
 
     performance = {
         debounce = 80,
