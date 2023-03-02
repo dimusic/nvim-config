@@ -22,13 +22,14 @@ return require("packer").startup(function(use)
     use({
         "rose-pine/neovim",
         as = "rose-pine",
-        config = function() end,
+        config = function()
+        end,
     })
     use({
         "junegunn/seoul256.vim",
         as = "seoul256",
     })
-    use({ "catppuccin/nvim", as = "catppuccin" })
+    -- use({ "catppuccin/nvim", as = "catppuccin" })
 
     use({
         "nvim-treesitter/nvim-treesitter",
@@ -136,25 +137,29 @@ return require("packer").startup(function(use)
     use({
         "feline-nvim/feline.nvim",
     })
-    use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+
+    -- use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
     -- copilot
-    -- use({
-    --     "zbirenbaum/copilot.lua",
-    --     event = "VimEnter",
-    --     config = function()
-    --         vim.defer_fn(function()
-    --             require("copilot").setup()
-    --         end, 100)
-    --     end,
-    -- })
-    -- use({
-    --     "zbirenbaum/copilot-cmp",
-    --     after = { "copilot.lua" },
-    --     config = function()
-    --         require("copilot_cmp").setup()
-    --     end,
-    -- })
+    use({
+        "zbirenbaum/copilot.lua",
+        -- event = "VimEnter",
+        config = function()
+            -- vim.defer_fn(function()
+            require("copilot").setup({
+                -- suggestion = { enabled = false },
+                -- panel = { enabled = false },
+            })
+            -- end, 100)
+        end,
+    })
+    use({
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function()
+            require("copilot_cmp").setup()
+        end,
+    })
 
     use("vim-scripts/zoom.vim")
     use({
@@ -180,7 +185,8 @@ return require("packer").startup(function(use)
 
     use({
         "Eandrju/cellular-automaton.nvim",
-        config = function() end,
+        config = function()
+        end,
     })
 
     use({
@@ -201,7 +207,8 @@ return require("packer").startup(function(use)
 
     use({
         "karb94/neoscroll.nvim",
-        config = function() end,
+        config = function()
+        end,
     })
 
     use("wakatime/vim-wakatime")

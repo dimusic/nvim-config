@@ -115,39 +115,56 @@ lsp.setup()
 
 local cmp_config = lsp.defaults.cmp_config({
     sources = cmp.config.sources({
-        -- { name = "copilot" },
-        { name = "cmp_tabnine" },
+        { name = "copilot" },
+        -- { name = "cmp_tabnine" },
         { name = "path" },
         { name = "nvim_lsp", keyword_length = 2, max_item_count = 20 },
     }, {
         { name = "buffer", keyword_length = 3, max_item_count = 3 },
     }),
+    
+    -- tabnine
+    -- sorting = {
+    --     priority_weight = 2,
+    --     comparators = {
+    --         require("cmp_tabnine.compare"),
+    --         require("cmp.config.compare").offset,
+    --         require("cmp.config.compare").exact,
+    --         require("cmp.config.compare").score,
+    --         require("cmp.config.compare").recently_used,
+    --         require("cmp.config.compare").kind,
+    --         require("cmp.config.compare").sort_text,
+    --         require("cmp.config.compare").length,
+    --         require("cmp.config.compare").order,
+    --     },
+    -- },
 
+    -- copilot
     sorting = {
         priority_weight = 2,
         comparators = {
-            require("cmp_tabnine.compare"),
-            require("cmp.config.compare").offset,
-            require("cmp.config.compare").exact,
-            require("cmp.config.compare").score,
-            require("cmp.config.compare").recently_used,
-            require("cmp.config.compare").kind,
-            require("cmp.config.compare").sort_text,
-            require("cmp.config.compare").length,
-            require("cmp.config.compare").order,
+            require("copilot_cmp.comparators").prioritize,
+
+            -- Below is the default comparitor list and order for nvim-cmp
+            cmp.config.compare.offset,
+            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
         },
     },
-
     performance = {
         debounce = 80,
     },
-
     preselect = cmp.PreselectMode.None,
-
     window = {
         completion = cmp.config.window.bordered(),
     },
-
     formatting = {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, vim_item)
@@ -169,10 +186,8 @@ local cmp_config = lsp.defaults.cmp_config({
             return vim_item
         end,
     },
-
     mapping = lsp.defaults.cmp_mappings({
         ["<CR>"] = cmp.mapping.confirm({
-            -- this is the important line
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
         }),
