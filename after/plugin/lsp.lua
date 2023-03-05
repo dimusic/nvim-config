@@ -2,7 +2,23 @@ local lsp = require("lsp-zero")
 
 lsp.preset("lsp-compe")
 
-local rust_lsp = lsp.build_options("rust-analyzer", {})
+local rust_lsp = lsp.build_options("rust-analyzer", {
+    on_attach = function(_, bufnr)
+        -- Hover actions
+        vim.keymap.set("n", "<C-space>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
+        -- Code action groups
+        vim.keymap.set("n", "<space>ca", require("rust-tools").code_action_group.code_action_group, { buffer = bufnr })
+        -- require("rust-tools").inlay_hints.enable()
+    end,
+
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy",
+            },
+        },
+    },
+})
 
 lsp.ensure_installed({
     "tsserver",
@@ -107,11 +123,13 @@ lsp.on_attach(function(client, bufnr)
     end, { buffer = bufnr, remap = false, desc = "Signature Help" })
 end)
 
+lsp.skip_server_setup({ "rust_analyzer" })
+
+lsp.setup()
+
 require("rust-tools").setup({
     server = rust_lsp,
 })
-
-lsp.setup()
 
 local cmp_config = lsp.defaults.cmp_config({
     sources = cmp.config.sources({
@@ -122,7 +140,7 @@ local cmp_config = lsp.defaults.cmp_config({
     }, {
         { name = "buffer", keyword_length = 3, max_item_count = 3 },
     }),
-    
+
     -- tabnine
     -- sorting = {
     --     priority_weight = 2,
