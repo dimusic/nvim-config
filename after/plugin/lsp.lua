@@ -37,15 +37,15 @@ local source_mapping = {
     path = "📁",
 }
 
--- lsp.configure("sumneko_lua", {
---     settings = {
---         Lua = {
---             diagnostics = {
---                 globals = { "vim" },
---             },
---         },
---     },
--- })
+lsp.configure("lua_ls", {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+        },
+    },
+})
 
 local cmp = require("cmp")
 local has_words_before = function()
