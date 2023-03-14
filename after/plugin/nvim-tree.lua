@@ -29,7 +29,9 @@ require("nvim-tree").setup({
     },
 })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File Tree Toggle" })
-vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal File" })
+vim.keymap.set("n", "<leader>o", function()
+    require("nvim-tree.api").tree.find_file({ open = true, focus = true })
+end, { desc = "Reveal File" })
 
 -- vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 --
