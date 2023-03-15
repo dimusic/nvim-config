@@ -64,7 +64,8 @@ vim.g.everforest_better_performance = 1
 -- require("rose-pine").setup()
 
 -- Colorize("seoul256")
-Colorize()
+-- Colorize()
+Colorize("doubletrouble")
 
 -- require("catppuccin").setup({
 --     flavour = "mocha",

@@ -19,17 +19,17 @@ return require("packer").startup(function(use)
             --	vim.cmd('colorscheme everforest')
         end,
     })
-    use({
-        "rose-pine/neovim",
-        as = "rose-pine",
-        config = function()
-        end,
-    })
-    use({
-        "junegunn/seoul256.vim",
-        as = "seoul256",
-    })
-    -- use({ "catppuccin/nvim", as = "catppuccin" })
+    -- use({
+    --     "rose-pine/neovim",
+    --     as = "rose-pine",
+    --     config = function()
+    --     end,
+    -- })
+    -- use({
+    --     "junegunn/seoul256.vim",
+    --     as = "seoul256",
+    -- })
+    use({"muchzill4/doubletrouble"})
 
     use({
         "nvim-treesitter/nvim-treesitter",
