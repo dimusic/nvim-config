@@ -11,7 +11,7 @@ function Colorize(color)
     vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 
-    -- vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "#383738" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "#383738" })
 
     vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
     vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
