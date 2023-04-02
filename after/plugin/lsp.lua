@@ -136,9 +136,9 @@ local cmp_config = lsp.defaults.cmp_config({
         { name = "copilot" },
         -- { name = "cmp_tabnine" },
         { name = "path" },
-        { name = "nvim_lsp", keyword_length = 2, max_item_count = 20 },
+        { name = "nvim_lsp" },
     }, {
-        { name = "buffer", keyword_length = 3, max_item_count = 3 },
+        { name = "buffer", keyword_length = 2, max_item_count = 10 },
     }),
 
     -- tabnine
