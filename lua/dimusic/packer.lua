@@ -11,6 +11,7 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     })
+    use({ "smartpde/telescope-recent-files" })
 
     -- Colorschemes
     use({
@@ -29,14 +30,14 @@ return require("packer").startup(function(use)
     --     "junegunn/seoul256.vim",
     --     as = "seoul256",
     -- })
-    use({"muchzill4/doubletrouble"})
+    use({ "muchzill4/doubletrouble" })
 
     use({
         "nvim-treesitter/nvim-treesitter",
         -- run = ":TSUpdate",
     })
     use("nvim-treesitter/playground")
-    use('nvim-treesitter/nvim-treesitter-context')
+    use("nvim-treesitter/nvim-treesitter-context")
     use("theprimeagen/harpoon")
     use("mbbill/undotree")
 
@@ -134,7 +135,7 @@ return require("packer").startup(function(use)
         "akinsho/toggleterm.nvim",
         tag = "*",
     })
-    use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
+    use({ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" })
     use({
         "feline-nvim/feline.nvim",
     })
@@ -186,8 +187,7 @@ return require("packer").startup(function(use)
 
     use({
         "Eandrju/cellular-automaton.nvim",
-        config = function()
-        end,
+        config = function() end,
     })
 
     use({
@@ -208,8 +208,7 @@ return require("packer").startup(function(use)
 
     use({
         "karb94/neoscroll.nvim",
-        config = function()
-        end,
+        config = function() end,
     })
 
     use("wakatime/vim-wakatime")

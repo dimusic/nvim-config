@@ -24,11 +24,16 @@ require("telescope").setup({
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
         },
+
+        recent_files = {
+            only_cwd = true,
+        },
     },
 })
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("aerial")
+require("telescope").load_extension("recent_files")
 
 local builtin = require("telescope.builtin")
 
@@ -41,7 +46,7 @@ vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Find files" })
 
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Search help" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
-vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "File history" })
+vim.keymap.set("n", "<leader>fo", require("telescope").extensions.recent_files.pick, { desc = "Recent Files" })
 vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fW", function()
     builtin.live_grep({
