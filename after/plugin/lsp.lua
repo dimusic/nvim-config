@@ -176,9 +176,6 @@ local cmp_config = lsp.defaults.cmp_config({
             cmp.config.compare.order,
         },
     },
-    performance = {
-        debounce = 80,
-    },
     preselect = cmp.PreselectMode.None,
     window = {
         completion = cmp.config.window.bordered(),
@@ -204,6 +201,7 @@ local cmp_config = lsp.defaults.cmp_config({
             return vim_item
         end,
     },
+
     mapping = lsp.defaults.cmp_mappings({
         ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,

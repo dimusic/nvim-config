@@ -145,14 +145,12 @@ return require("packer").startup(function(use)
     -- copilot
     use({
         "zbirenbaum/copilot.lua",
-        -- event = "VimEnter",
+        cmd = "Copilot",
         config = function()
-            -- vim.defer_fn(function()
             require("copilot").setup({
-                -- suggestion = { enabled = false },
-                -- panel = { enabled = false },
+                panel = { enabled = false },
+                suggestion = { enabled = false },
             })
-            -- end, 100)
         end,
     })
     use({
