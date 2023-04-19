@@ -99,7 +99,7 @@ return require("packer").startup(function(use)
             require("windows").setup()
         end,
     })
-    use({ "windwp/nvim-autopairs" })
+    -- use({ "windwp/nvim-autopairs" })
     use({
         "max397574/better-escape.nvim",
         config = function()
