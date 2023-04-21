@@ -145,7 +145,6 @@ return require("packer").startup(function(use)
     -- copilot
     use({
         "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
         config = function()
             require("copilot").setup({
                 panel = { enabled = false },
