@@ -208,5 +208,9 @@ return require("packer").startup(function(use)
         config = function() end,
     })
 
+    use({
+        "christoomey/vim-tmux-navigator"
+    })
+
     use("wakatime/vim-wakatime")
 end)
