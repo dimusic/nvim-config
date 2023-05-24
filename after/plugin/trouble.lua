@@ -8,7 +8,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
     "n",
     "<leader>xd",
-    "<cmd>TroubleToggle workspace_diagnostics<cr>",
+    "<cmd>TroubleToggle document_diagnostics<cr>",
     { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { noremap = true, silent = true })
