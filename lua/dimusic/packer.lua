@@ -81,6 +81,8 @@ return require("packer").startup(function(use)
         },
     })
 
+    use({ "p00f/clangd_extensions.nvim" })
+
     use({
         "jose-elias-alvarez/null-ls.nvim",
         requires = { "nvim-lua/plenary.nvim" },
@@ -209,7 +211,7 @@ return require("packer").startup(function(use)
     })
 
     use({
-        "christoomey/vim-tmux-navigator"
+        "christoomey/vim-tmux-navigator",
     })
 
     use("wakatime/vim-wakatime")
