@@ -125,16 +125,16 @@ lsp.on_attach(function(client, bufnr)
     end, { buffer = bufnr, remap = false, desc = "Signature Help" })
 end)
 
-lsp.skip_server_setup({ "clangd" })
+-- lsp.skip_server_setup({ "clangd" })
 lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.setup()
 
-require("clangd_extensions").setup({
-    server = {
-        cmd = { "clangd", "--offset-encoding=utf-16" },
-    },
-})
+-- require("clangd_extensions").setup({
+--     server = {
+--         cmd = { "clangd", "--offset-encoding=utf-16" },
+--     },
+-- })
 
 require("rust-tools").setup({
     server = rust_lsp,

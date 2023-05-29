@@ -81,7 +81,7 @@ return require("packer").startup(function(use)
         },
     })
 
-    use({ "p00f/clangd_extensions.nvim" })
+    -- use({ "p00f/clangd_extensions.nvim" })
 
     use({
         "jose-elias-alvarez/null-ls.nvim",
