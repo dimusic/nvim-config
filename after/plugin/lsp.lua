@@ -142,12 +142,11 @@ require("rust-tools").setup({
 
 local cmp_config = lsp.defaults.cmp_config({
     sources = cmp.config.sources({
-        { name = "copilot" },
+        { name = "copilot", priority_weight = 8 },
         -- { name = "cmp_tabnine" },
-        { name = "path" },
-        { name = "nvim_lsp" },
-    }, {
-        { name = "buffer", keyword_length = 2, max_item_count = 10 },
+        { name = "nvim_lsp", priority_weight = 8 },
+        { name = "buffer", keyword_length = 2, max_item_count = 10, priority_weight = 7 },
+        { name = "path", priority_weight = 4 },
     }),
 
     -- tabnine
@@ -172,17 +171,26 @@ local cmp_config = lsp.defaults.cmp_config({
         comparators = {
             require("copilot_cmp.comparators").prioritize,
 
-            -- Below is the default comparitor list and order for nvim-cmp
-            cmp.config.compare.offset,
-            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
             cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.recently_used,
             cmp.config.compare.locality,
-            cmp.config.compare.kind,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.score,
             cmp.config.compare.sort_text,
+            cmp.config.compare.offset,
             cmp.config.compare.length,
             cmp.config.compare.order,
+
+            -- -- Below is the default comparitor list and order for nvim-cmp
+            -- cmp.config.compare.offset,
+            -- -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+            -- cmp.config.compare.exact,
+            -- cmp.config.compare.score,
+            -- cmp.config.compare.recently_used,
+            -- cmp.config.compare.locality,
+            -- cmp.config.compare.kind,
+            -- cmp.config.compare.sort_text,
+            -- cmp.config.compare.length,
+            -- cmp.config.compare.order,
         },
     },
     preselect = cmp.PreselectMode.None,
