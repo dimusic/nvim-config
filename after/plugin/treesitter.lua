@@ -1,12 +1,12 @@
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "rust", "vim", "help", "javascript", "typescript", "tsx" },
-  sync_install = false,
+require("nvim-treesitter.configs").setup({
+    ensure_installed = { "c", "lua", "rust", "vim", "javascript", "typescript", "tsx" },
+    sync_install = false,
 
-  auto_install = true,
+    auto_install = true,
 
-  highlight = {
-    enable = true,
+    highlight = {
+        enable = true,
 
-    additional_vim_regex_highlighting = false,
-  },
-}
+        additional_vim_regex_highlighting = false,
+    },
+})
