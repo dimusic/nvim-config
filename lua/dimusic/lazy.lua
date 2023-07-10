@@ -41,7 +41,7 @@ require("lazy").setup({
 
     {
         "nvim-treesitter/nvim-treesitter",
-        -- run = ":TSUpdate",
+        build = ":TSUpdate",
     },
 
     {"nvim-treesitter/playground"},
@@ -139,7 +139,7 @@ require("lazy").setup({
 
     {
         "j-hui/fidget.nvim",
-        version = "legacy",
+        branch = "legacy",
     },
 
     {
