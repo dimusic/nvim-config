@@ -25,6 +25,7 @@ require("lazy").setup({
 
     { "smartpde/telescope-recent-files" },
 
+    -- Colorschemes
     {
         "neanias/everforest-nvim",
         config = function()
@@ -35,6 +36,8 @@ require("lazy").setup({
     },
 
     { "muchzill4/doubletrouble" },
+
+    { "embark-theme/vim", name = "embark" },
 
     {
         "nvim-treesitter/nvim-treesitter",

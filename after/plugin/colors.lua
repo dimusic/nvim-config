@@ -68,9 +68,11 @@ vim.g.everforest_better_performance = 1
 
 -- Colorize("seoul256")
 
-Colorize()
+-- Colorize()
 
 -- Colorize("doubletrouble")
+
+Colorize("embark")
 
 -- require("catppuccin").setup({
 --     flavour = "mocha",

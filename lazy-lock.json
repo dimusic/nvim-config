@@ -12,6 +12,7 @@
   "copilot-cmp": { "branch": "master", "commit": "c2cdb3c0f5078b0619055af192295830a7987790" },
   "copilot.lua": { "branch": "master", "commit": "e48bd7020a98be217d85c006a298656294fd6210" },
   "doubletrouble": { "branch": "master", "commit": "ae3a14f8e77c49725fb3e289a65aff1df6c2890d" },
+  "embark": { "branch": "main", "commit": "0e2c7d36b766dcebba2d8a3a0639784446dea086" },
   "everforest-nvim": { "branch": "main", "commit": "6fd9285fff13e6e62fbde7ef577acdbe142862c2" },
   "feline.nvim": { "branch": "master", "commit": "d48b6f92c6ccdd6654c956f437be49ea160b5b0c" },
   "fidget.nvim": { "branch": "main", "commit": "f1c375ba68839eaa4a65efdf2aa078c0da0548fe" },
