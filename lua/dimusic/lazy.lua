@@ -1,21 +1,21 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
-        'nvim-telescope/telescope.nvim',
-        version = '0.1.2',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        "nvim-telescope/telescope.nvim",
+        version = "0.1.2",
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
 
     {
@@ -32,7 +32,7 @@ require("lazy").setup({
             require("everforest").setup({
                 transparent_background_level = 1,
             })
-        end
+        end,
     },
 
     { "muchzill4/doubletrouble" },
@@ -44,10 +44,10 @@ require("lazy").setup({
         build = ":TSUpdate",
     },
 
-    {"nvim-treesitter/playground"},
-    {"nvim-treesitter/nvim-treesitter-context"},
-    {"theprimeagen/harpoon"},
-    {"mbbill/undotree"},
+    { "nvim-treesitter/playground" },
+    { "nvim-treesitter/nvim-treesitter-context" },
+    { "theprimeagen/harpoon" },
+    { "mbbill/undotree" },
 
     {
         "simrat39/rust-tools.nvim",
@@ -94,7 +94,7 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" },
     },
 
-    {"onsails/lspkind.nvim"},
+    { "onsails/lspkind.nvim" },
 
     {
         "folke/which-key.nvim",
@@ -127,7 +127,7 @@ require("lazy").setup({
         end,
     },
 
-    {"lukas-reineke/indent-blankline.nvim"},
+    { "lukas-reineke/indent-blankline.nvim" },
 
     {
         "nvim-tree/nvim-tree.lua",
@@ -145,7 +145,7 @@ require("lazy").setup({
     {
         "akinsho/toggleterm.nvim",
         version = "*",
-        config = true
+        config = true,
     },
 
     -- {{ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" }},
@@ -169,14 +169,14 @@ require("lazy").setup({
         end,
     },
 
-    {"vim-scripts/zoom.vim"},
+    { "vim-scripts/zoom.vim" },
 
     {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
     },
 
-    {"lewis6991/gitsigns.nvim"},
+    { "lewis6991/gitsigns.nvim" },
 
     {
         "windwp/nvim-ts-autotag",
@@ -185,10 +185,10 @@ require("lazy").setup({
         end,
     },
 
-    {"mrjones2014/smart-splits.nvim"},
-    {"folke/zen-mode.nvim"},
+    { "mrjones2014/smart-splits.nvim" },
+    { "folke/zen-mode.nvim" },
 
-    {"RRethy/vim-illuminate"},
+    { "RRethy/vim-illuminate" },
 
     {
         "Shatur/neovim-session-manager",
@@ -217,5 +217,5 @@ require("lazy").setup({
 
     { "christoomey/vim-tmux-navigator" },
 
-    {"wakatime/vim-wakatime"},
+    { "wakatime/vim-wakatime" },
 })
