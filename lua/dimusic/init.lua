@@ -26,4 +26,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 require("dimusic.set")
 require("dimusic.remap")
-require("dimusic.packer")
+-- require("dimusic.packer")
+require("dimusic.lazy")
