@@ -13,6 +13,8 @@ function Colorize(color)
 
     -- vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "#383738" })
     vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { bg = "none" })
 
     vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
     vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
@@ -65,8 +67,10 @@ vim.g.everforest_better_performance = 1
 -- require("rose-pine").setup()
 
 -- Colorize("seoul256")
--- Colorize()
-Colorize("doubletrouble")
+
+Colorize()
+
+-- Colorize("doubletrouble")
 
 -- require("catppuccin").setup({
 --     flavour = "mocha",

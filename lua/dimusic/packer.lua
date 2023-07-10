@@ -15,11 +15,14 @@ return require("packer").startup(function(use)
 
     -- Colorschemes
     use({
-        "sainnhe/everforest",
+        "neanias/everforest-nvim",
         config = function()
-            --	vim.cmd('colorscheme everforest')
-        end,
+            require("everforest").setup({
+                transparent_background_level = 1,
+            })
+        end
     })
+
     -- use({
     --     "rose-pine/neovim",
     --     as = "rose-pine",
