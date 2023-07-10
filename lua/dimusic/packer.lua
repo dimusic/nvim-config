@@ -140,7 +140,7 @@ return require("packer").startup(function(use)
         "akinsho/toggleterm.nvim",
         tag = "*",
     })
-    use({ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" })
+    -- use({ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" })
     use({
         "feline-nvim/feline.nvim",
     })
