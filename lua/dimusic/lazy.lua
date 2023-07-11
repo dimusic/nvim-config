@@ -173,7 +173,7 @@ require("lazy").setup({
 
     {
         "folke/trouble.nvim",
-        dependencies = "kyazdani42/nvim-web-devicons",
+        dependencies = "nvim-tree/nvim-web-devicons",
     },
 
     { "lewis6991/gitsigns.nvim" },
