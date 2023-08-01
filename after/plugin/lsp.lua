@@ -229,14 +229,11 @@ local cmp_config = lsp.defaults.cmp_config({
         ["<Tab>"] = vim.schedule_wrap(function(fallback)
             --cmp.mapping.abort()
 
-            local copilot_keys = vim.fn["copilot#Accept"]()
             if cmp.visible() then
                 cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = true,
                 })()
-            elseif copilot_keys ~= "" and type(copilot_keys) == "string" then
-                vim.api.nvim_feedkeys(copilot_keys, "i", true)
             else
                 fallback()
             end
