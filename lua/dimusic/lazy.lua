@@ -152,22 +152,24 @@ require("lazy").setup({
     { "feline-nvim/feline.nvim" },
 
     -- copilot
-    {
-        "zbirenbaum/copilot.lua",
-        config = function()
-            require("copilot").setup({
-                panel = { enabled = false },
-                suggestion = { enabled = false },
-            })
-        end,
-    },
-    {
-        "zbirenbaum/copilot-cmp",
-        -- after = { "copilot.lua" },
-        config = function()
-            require("copilot_cmp").setup()
-        end,
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     config = function()
+    --         require("copilot").setup({
+    --             panel = { enabled = false },
+    --             suggestion = { enabled = false },
+    --         })
+    --     end,
+    -- },
+    -- {
+    --     "zbirenbaum/copilot-cmp",
+    --     -- after = { "copilot.lua" },
+    --     config = function()
+    --         require("copilot_cmp").setup()
+    --     end,
+    -- },
+
+    { "github/copilot.vim" },
 
     { "vim-scripts/zoom.vim" },
 

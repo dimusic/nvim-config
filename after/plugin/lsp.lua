@@ -142,7 +142,7 @@ require("rust-tools").setup({
 
 local cmp_config = lsp.defaults.cmp_config({
     sources = cmp.config.sources({
-        { name = "copilot", priority_weight = 8 },
+        -- { name = "copilot", priority_weight = 8 },
         -- { name = "cmp_tabnine" },
         { name = "nvim_lsp", priority_weight = 8 },
     }, {
@@ -170,7 +170,7 @@ local cmp_config = lsp.defaults.cmp_config({
     sorting = {
         priority_weight = 2,
         comparators = {
-            require("copilot_cmp.comparators").prioritize,
+            -- require("copilot_cmp.comparators").prioritize,
 
             cmp.config.compare.exact,
             cmp.config.compare.locality,
@@ -222,16 +222,49 @@ local cmp_config = lsp.defaults.cmp_config({
 
     mapping = lsp.defaults.cmp_mappings({
         ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
+            behavior = cmp.ConfirmBehavior.Insert,
             select = false,
         }),
+
         ["<Tab>"] = vim.schedule_wrap(function(fallback)
-            if cmp.visible() and has_words_before() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            --cmp.mapping.abort()
+
+            local copilot_keys = vim.fn["copilot#Accept"]()
+            if cmp.visible() then
+                cmp.mapping.confirm({
+                    behavior = cmp.ConfirmBehavior.Replace,
+                    select = true,
+                })()
+            elseif copilot_keys ~= "" and type(copilot_keys) == "string" then
+                vim.api.nvim_feedkeys(copilot_keys, "i", true)
             else
                 fallback()
             end
         end),
+
+        ["<S-Tab>"] = vim.schedule_wrap(function(fallback)
+            cmp.mapping.abort()
+
+            local copilot_keys = vim.fn["copilot#Accept"]()
+            if copilot_keys ~= "" and type(copilot_keys) == "string" then
+                vim.api.nvim_feedkeys(copilot_keys, "i", true)
+            else
+                fallback()
+            end
+        end),
+
+        -- ["<Tab>"] = cmp.mapping.confirm({
+        --     behavior = cmp.ConfirmBehavior.Replace,
+        --     select = true,
+        -- }),
+
+        -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
+        --     if cmp.visible() and has_words_before() then
+        --         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        --     else
+        --         fallback()
+        --     end
+        -- end),
     }),
 })
 
