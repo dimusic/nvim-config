@@ -127,7 +127,7 @@ require("lazy").setup({
         end,
     },
 
-    { "lukas-reineke/indent-blankline.nvim" },
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
     {
         "nvim-tree/nvim-tree.lua",
