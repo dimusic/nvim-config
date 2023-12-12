@@ -1,5 +1,3 @@
-vim.keymap.set("n", "<leader>e", "<cmd>NeoTreeFocusToggle<cr>", { desc = "File Tree Toggle" })
-
 vim.keymap.set("n", "<leader>gj", function()
     require("gitsigns").next_hunk()
 end, { desc = "Next git hunk" })
