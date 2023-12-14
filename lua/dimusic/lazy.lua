@@ -215,4 +215,11 @@ require("lazy").setup({
     { "christoomey/vim-tmux-navigator" },
 
     { "wakatime/vim-wakatime" },
+
+    { "renerocksai/calendar-vim" },
+
+    {
+        "renerocksai/telekasten.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+    },
 })
