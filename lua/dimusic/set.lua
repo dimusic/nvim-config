@@ -43,34 +43,34 @@ vim.opt.incsearch = true
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
-vim.opt.history = 100
+-- vim.opt.history = 100
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.g.rustfmt_autosave = 1
 
-local is_wsl = (function()
-    local output = vim.fn.systemlist("uname -r")
-    return not not string.find(output[1] or "", "WSL")
-end)()
+-- local is_wsl = (function()
+--     local output = vim.fn.systemlist("uname -r")
+--     return not not string.find(output[1] or "", "WSL")
+-- end)()
 
-if is_wsl then
-    vim.cmd([[
-    let g:clipboard = {
-      \ 'name': 'WslClipboard',
-      \ 'copy': {
-      \   '+': '/mnt/c/Windows/System32/clip.exe',
-      \   '*': '/mnt/c/Windows/System32/clip.exe',
-      \ },
-      \   'paste': {
-      \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      \   },
-      \ 'cache_enabled': 0
-      \ }
-    ]])
-end
+-- if is_wsl then
+--     vim.cmd([[
+--     let g:clipboard = {
+--       \ 'name': 'WslClipboard',
+--       \ 'copy': {
+--       \   '+': '/mnt/c/Windows/System32/clip.exe',
+--       \   '*': '/mnt/c/Windows/System32/clip.exe',
+--       \ },
+--       \   'paste': {
+--       \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--       \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--       \   },
+--       \ 'cache_enabled': 0
+--       \ }
+--     ]])
+-- end
 
 vim.cmd([[
 " trigger `autoread` when files changes on disk
