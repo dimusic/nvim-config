@@ -28,6 +28,7 @@ require("lazy").setup({
     -- Colorschemes
     {
         "neanias/everforest-nvim",
+        lazy = true,
         config = function()
             require("everforest").setup({
                 transparent_background_level = 1,
@@ -35,22 +36,29 @@ require("lazy").setup({
         end,
     },
 
-    { "muchzill4/doubletrouble" },
+    { "muchzill4/doubletrouble", lazy = true },
 
-    { "embark-theme/vim", name = "embark" },
+    { "embark-theme/vim", name = "embark", lazy = true },
 
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
     },
 
-    { "nvim-treesitter/playground" },
+    { "nvim-treesitter/playground", lazy = true },
     { "nvim-treesitter/nvim-treesitter-context" },
     { "theprimeagen/harpoon" },
-    { "mbbill/undotree" },
+    {
+        "mbbill/undotree",
+        lazy = true,
+        keys = {
+            { "<Leader>u", ":UndotreeToggle<CR>", desc = "Undotree" },
+        },
+    },
 
     {
         "simrat39/rust-tools.nvim",
+        lazy = true,
         config = function()
             local rt = require("rust-tools")
 
@@ -192,7 +200,13 @@ require("lazy").setup({
         dependencies = { { "nvim-lua/plenary.nvim" } },
     },
 
-    { "Eandrju/cellular-automaton.nvim" },
+    {
+        "Eandrju/cellular-automaton.nvim",
+        lazy = true,
+        keys = {
+            { "<leader>lm", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "Make it rain" },
+        },
+    },
 
     {
         "iamcco/markdown-preview.nvim",
@@ -205,6 +219,7 @@ require("lazy").setup({
 
     {
         "stevearc/aerial.nvim",
+        lazy = true,
         config = function()
             require("aerial").setup()
         end,
@@ -221,5 +236,11 @@ require("lazy").setup({
     {
         "renerocksai/telekasten.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
+        lazy = true,
+        config = function()
+            require("telekasten").setup({
+                home = vim.fn.expand("~/notes-telekasten"), -- Put the name of your notes directory here
+            })
+        end,
     },
 })
