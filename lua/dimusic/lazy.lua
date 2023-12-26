@@ -114,7 +114,7 @@ require("lazy").setup({
         end,
     },
 
-    -- {{ "windwp/nvim-autopairs" }},
+    { "windwp/nvim-autopairs" },
 
     {
         "max397574/better-escape.nvim",
@@ -151,7 +151,7 @@ require("lazy").setup({
         config = true,
     },
 
-    -- {{ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" }},
+    { "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" },
     { "feline-nvim/feline.nvim" },
 
     -- copilot
