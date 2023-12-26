@@ -7,6 +7,7 @@ vim.keymap.set("n", "<leader>nn", function()
 end, { desc = "New note" })
 
 vim.keymap.set("n", "<leader>nc", function()
+    require("calendar-vim")
     require("telekasten").show_calendar()
 end, { desc = "Show calendar" })
 
