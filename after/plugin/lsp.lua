@@ -2,24 +2,6 @@ local lsp = require("lsp-zero")
 
 lsp.preset("lsp-compe")
 
-local rust_lsp = lsp.build_options("rust-analyzer", {
-    on_attach = function(_, bufnr)
-        -- Hover actions
-        vim.keymap.set("n", "<C-space>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
-        -- Code action groups
-        vim.keymap.set("n", "<space>ca", require("rust-tools").code_action_group.code_action_group, { buffer = bufnr })
-        -- require("rust-tools").inlay_hints.enable()
-    end,
-
-    settings = {
-        ["rust-analyzer"] = {
-            checkOnSave = {
-                command = "clippy",
-            },
-        },
-    },
-})
-
 lsp.ensure_installed({
     "tsserver",
     "rust_analyzer",
@@ -112,14 +94,6 @@ lsp.on_attach(function(client, bufnr)
         vim.lsp.buf.rename()
     end, { buffer = bufnr, remap = false, desc = "Rename" })
 
-    vim.keymap.set("n", "<leader>lhe", function()
-        require("rust-tools").inlay_hints.enable()
-    end, { buffer = bufnr, remap = false, desc = "Enable Rust Tools Inlay Hints" })
-
-    vim.keymap.set("n", "<leader>lhd", function()
-        require("rust-tools").inlay_hints.disable()
-    end, { buffer = bufnr, remap = false, desc = "Disable Rust Tools Inlay Hints" })
-
     vim.keymap.set("i", "<C-h>", function()
         vim.lsp.buf.signature_help()
     end, { buffer = bufnr, remap = false, desc = "Signature Help" })
@@ -129,16 +103,6 @@ end)
 lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.setup()
-
--- require("clangd_extensions").setup({
---     server = {
---         cmd = { "clangd", "--offset-encoding=utf-16" },
---     },
--- })
-
-require("rust-tools").setup({
-    server = rust_lsp,
-})
 
 local cmp_config = lsp.defaults.cmp_config({
     snippet = {
@@ -290,3 +254,16 @@ vim.diagnostic.config({
 -- ]])
 
 require("fidget").setup({})
+
+-- Rustaceanvim setup
+vim.g.rustaceanvim = {
+    server = {
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy",
+                },
+            },
+        },
+    },
+}

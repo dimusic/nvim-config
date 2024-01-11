@@ -50,6 +50,11 @@ vim.opt.splitright = true
 
 vim.g.rustfmt_autosave = 1
 
+vim.o.foldcolumn = "0"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
 -- local is_wsl = (function()
 --     local output = vim.fn.systemlist("uname -r")
 --     return not not string.find(output[1] or "", "WSL")
