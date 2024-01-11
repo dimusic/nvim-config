@@ -260,6 +260,20 @@ vim.g.rustaceanvim = {
     server = {
         settings = {
             ["rust-analyzer"] = {
+                files = {
+                    excludeDirs = {
+                        ".git",
+                        ".venv",
+                        "bin",
+                        "target",
+                        "web-app",
+                        "dist",
+                        "node_modules",
+                        "public",
+                        "src",
+                    },
+                },
+
                 checkOnSave = {
                     command = "clippy",
                 },
