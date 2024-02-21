@@ -29,6 +29,12 @@ lsp.configure("lua_ls", {
     },
 })
 
+require("lspconfig").angularls.setup({
+    on_init = function(client)
+        client.server_capabilities.renameProvider = false
+    end,
+})
+
 local cmp = require("cmp")
 local has_words_before = function()
     if not unpack then
