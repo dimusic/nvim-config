@@ -7,7 +7,6 @@ null_ls.setup({
             extra_args = { "--indent-type", "Spaces", "--indent-width", "4" },
         }),
         null_ls.builtins.formatting.prettierd.with({ extra_args = { "--print-width=120", "--tab-width=4" } }),
-        null_ls.builtins.formatting.rustfmt.with({ extra_args = { "--edition=2021" } }),
     },
 
     on_attach = function(client, bufnr)
