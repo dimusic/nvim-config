@@ -58,7 +58,8 @@ require("lazy").setup({
 
     {
         "mrcjkb/rustaceanvim",
-        version = "^3", -- Recommended
+        version = "^4", -- Recommended
+        lazy = false,
         ft = { "rust" },
     },
 
@@ -226,7 +227,7 @@ require("lazy").setup({
         lazy = true,
         config = function()
             require("telekasten").setup({
-                home = vim.fn.expand("~/notes-telekasten"), -- Put the name of your notes directory here
+                home = vim.fn.expand("~/SynologyDrive/notes-telekasten"), -- Put the name of your notes directory here
             })
         end,
     },
