@@ -105,13 +105,6 @@ require("lazy").setup({
     { "windwp/nvim-autopairs" },
 
     {
-        "max397574/better-escape.nvim",
-        config = function()
-            require("better_escape").setup()
-        end,
-    },
-
-    {
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
