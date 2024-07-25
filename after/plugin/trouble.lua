@@ -1,16 +1,16 @@
-vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
     "n",
     "<leader>xw",
-    "<cmd>TroubleToggle workspace_diagnostics<cr>",
+    "<cmd>Trouble diagnostics toggle focus=true<cr>",
     { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
     "n",
     "<leader>xd",
-    "<cmd>TroubleToggle document_diagnostics<cr>",
+    "<cmd>Trouble diagnostics toggle focus=true filter.buf=0<cr>",
     { noremap = true, silent = true }
 )
-vim.api.nvim_set_keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp toggle focus=true<cr>", { noremap = true, silent = true })
 
 require("trouble").setup()
