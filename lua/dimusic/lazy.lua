@@ -58,26 +58,23 @@ require("lazy").setup({
 
     {
         "mrcjkb/rustaceanvim",
-        version = "^4", -- Recommended
+        version = "^5", -- Recommended
         lazy = false,
-        ft = { "rust" },
     },
 
     {
-        "VonHeikemen/lsp-zero.nvim",
-        dependencies = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
-            { "williamboman/mason.nvim" },
-            { "williamboman/mason-lspconfig.nvim" },
+        { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
+        -- LSP Support
+        { "neovim/nvim-lspconfig" },
+        { "williamboman/mason.nvim" },
+        { "williamboman/mason-lspconfig.nvim" },
 
-            -- Autocompletion
-            { "hrsh7th/nvim-cmp" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
-        },
+        -- Autocompletion
+        { "hrsh7th/nvim-cmp" },
+        { "hrsh7th/cmp-buffer" },
+        { "hrsh7th/cmp-path" },
+        { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-nvim-lua" },
     },
 
     {

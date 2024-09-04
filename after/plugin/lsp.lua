@@ -1,11 +1,5 @@
-local lsp = require("lsp-zero")
-
-lsp.preset("lsp-compe")
-
-lsp.ensure_installed({
-    "tsserver",
-    "rust_analyzer",
-})
+local lsp_zero = require("lsp-zero")
+local nvim_lsp = require("lspconfig")
 
 local source_mapping = {
     -- cmp_tabnine = "🐒",
@@ -19,39 +13,16 @@ local source_mapping = {
     path = "📁",
 }
 
-lsp.configure("lua_ls", {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
-    },
-})
-
-require("lspconfig").angularls.setup({
-    on_init = function(client)
-        client.server_capabilities.renameProvider = false
-    end,
-})
-
-local cmp = require("cmp")
-local has_words_before = function()
-    if not unpack then
-        unpack = table.unpack
+local lsp_attach = function(client, bufnr)
+    if nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json")(vim.fn.getcwd()) then
+        if client.name == "tsserver" then
+            client.stop()
+            return
+        end
     end
 
-    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-        return false
-    end
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-end
-
-lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({ buffer = bufnr })
-
-    local opts = { buffer = bufnr, remap = false }
+    lsp_zero.default_keymaps({ buffer = bufnr })
+    -- local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "<C-]>", function()
         vim.lsp.buf.definition()
@@ -103,20 +74,97 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function()
         vim.lsp.buf.signature_help()
     end, { buffer = bufnr, remap = false, desc = "Signature Help" })
-end)
+end
+
+lsp_zero.extend_lspconfig({
+    sign_text = true,
+    lsp_attach = lsp_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
+-- require("lspconfig").lua_ls.setup({
+--     on_init = function(client)
+--         lsp_zero.nvim_lua_settings(client, {})
+--     end,
+--
+--     settings = {
+--         Lua = {
+--             diagnostics = {
+--                 globals = { "vim" },
+--             },
+--         },
+--     },
+-- })
+
+-- require("lspconfig").tsserver.setup({
+--     root_dir = nvim_lsp.util.root_pattern("package.json"),
+--     single_file_support = false,
+-- })
+--
+-- require("lspconfig").denols.setup({
+--     root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json"),
+-- })
+--
+-- require("lspconfig").angularls.setup({
+--     on_init = function(client)
+--         client.server_capabilities.renameProvider = false
+--     end,
+-- })
+
+-- lsp_zero.setup_servers({ "angularls", "denols", "lua_ls", "tsserver" })
+
+require("mason").setup({})
+require("mason-lspconfig").setup({
+    handlers = {
+        function(server_name)
+            require("lspconfig")[server_name].setup({})
+        end,
+
+        ["rust_analyzer"] = lsp_zero.noop,
+
+        ["lua_ls"] = function()
+            require("lspconfig").lua_ls.setup({
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                    },
+                },
+            })
+        end,
+
+        ["tsserver"] = function()
+            require("lspconfig").tsserver.setup({
+                root_dir = nvim_lsp.util.root_pattern("package.json"),
+                single_file_support = false,
+            })
+        end,
+
+        ["denols"] = function()
+            require("lspconfig").denols.setup({
+                root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json"),
+            })
+        end,
+
+        ["angularls"] = function()
+            require("lspconfig").angularls.setup({
+                on_init = function(client)
+                    client.server_capabilities.renameProvider = false
+                end,
+            })
+        end,
+    },
+})
 
 -- lsp.skip_server_setup({ "clangd" })
-lsp.skip_server_setup({ "rust_analyzer" })
+-- lsp_zero.skip_server_setup({ "rust_analyzer" })
 
-lsp.setup()
-
-local cmp_config = lsp.defaults.cmp_config({
+local cmp = require("cmp")
+cmp.setup({
     snippet = {
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-            -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            vim.snippet.expand(args.body)
         end,
     },
 
@@ -129,23 +177,6 @@ local cmp_config = lsp.defaults.cmp_config({
         { name = "path", priority_weight = 4 },
     }),
 
-    -- tabnine
-    -- sorting = {
-    --     priority_weight = 2,
-    --     comparators = {
-    --         require("cmp_tabnine.compare"),
-    --         require("cmp.config.compare").offset,
-    --         require("cmp.config.compare").exact,
-    --         require("cmp.config.compare").score,
-    --         require("cmp.config.compare").recently_used,
-    --         require("cmp.config.compare").kind,
-    --         require("cmp.config.compare").sort_text,
-    --         require("cmp.config.compare").length,
-    --         require("cmp.config.compare").order,
-    --     },
-    -- },
-
-    -- copilot
     sorting = {
         priority_weight = 2,
         comparators = {
@@ -159,24 +190,13 @@ local cmp_config = lsp.defaults.cmp_config({
             cmp.config.compare.offset,
             cmp.config.compare.length,
             cmp.config.compare.order,
-
-            -- -- Below is the default comparitor list and order for nvim-cmp
-            -- cmp.config.compare.offset,
-            -- -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-            -- cmp.config.compare.exact,
-            -- cmp.config.compare.score,
-            -- cmp.config.compare.recently_used,
-            -- cmp.config.compare.locality,
-            -- cmp.config.compare.kind,
-            -- cmp.config.compare.sort_text,
-            -- cmp.config.compare.length,
-            -- cmp.config.compare.order,
         },
     },
     preselect = cmp.PreselectMode.None,
     window = {
         completion = cmp.config.window.bordered(),
     },
+
     formatting = {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, vim_item)
@@ -199,7 +219,7 @@ local cmp_config = lsp.defaults.cmp_config({
         end,
     },
 
-    mapping = lsp.defaults.cmp_mappings({
+    mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
             select = false,
@@ -228,23 +248,8 @@ local cmp_config = lsp.defaults.cmp_config({
                 fallback()
             end
         end),
-
-        -- ["<Tab>"] = cmp.mapping.confirm({
-        --     behavior = cmp.ConfirmBehavior.Replace,
-        --     select = true,
-        -- }),
-
-        -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
-        --     if cmp.visible() and has_words_before() then
-        --         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        --     else
-        --         fallback()
-        --     end
-        -- end),
     }),
 })
-
-cmp.setup(cmp_config)
 
 vim.diagnostic.config({
     virtual_text = true,
@@ -259,11 +264,12 @@ vim.diagnostic.config({
 --     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- ]])
 
-require("fidget").setup({})
+-- require("fidget").setup({})
 
 -- Rustaceanvim setup
 vim.g.rustaceanvim = {
     server = {
+        capabilities = lsp_zero.get_capabilities(),
         settings = {
             ["rust-analyzer"] = {
                 files = {
