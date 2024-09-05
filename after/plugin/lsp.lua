@@ -82,38 +82,9 @@ lsp_zero.extend_lspconfig({
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
--- require("lspconfig").lua_ls.setup({
---     on_init = function(client)
---         lsp_zero.nvim_lua_settings(client, {})
---     end,
---
---     settings = {
---         Lua = {
---             diagnostics = {
---                 globals = { "vim" },
---             },
---         },
---     },
--- })
-
--- require("lspconfig").tsserver.setup({
---     root_dir = nvim_lsp.util.root_pattern("package.json"),
---     single_file_support = false,
--- })
---
--- require("lspconfig").denols.setup({
---     root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json"),
--- })
---
--- require("lspconfig").angularls.setup({
---     on_init = function(client)
---         client.server_capabilities.renameProvider = false
---     end,
--- })
-
--- lsp_zero.setup_servers({ "angularls", "denols", "lua_ls", "tsserver" })
-
-require("mason").setup({})
+require("mason").setup({
+    -- PATH = "append",
+})
 require("mason-lspconfig").setup({
     handlers = {
         function(server_name)
@@ -156,9 +127,6 @@ require("mason-lspconfig").setup({
         end,
     },
 })
-
--- lsp.skip_server_setup({ "clangd" })
--- lsp_zero.skip_server_setup({ "rust_analyzer" })
 
 local cmp = require("cmp")
 cmp.setup({
@@ -264,28 +232,17 @@ vim.diagnostic.config({
 --     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- ]])
 
--- require("fidget").setup({})
-
 -- Rustaceanvim setup
 vim.g.rustaceanvim = {
-    server = {
-        capabilities = lsp_zero.get_capabilities(),
-        settings = {
-            ["rust-analyzer"] = {
-                files = {
-                    excludeDirs = {
-                        ".git",
-                        ".venv",
-                        "bin",
-                        "target",
-                        "web-app",
-                        "dist",
-                        "node_modules",
-                        "public",
-                        "src",
-                    },
-                },
+    tools = {},
 
+    server = {
+        -- on_attach = lsp_attach,
+
+        capabilities = lsp_zero.get_capabilities(),
+
+        default_settings = {
+            ["rust-analyzer"] = {
                 checkOnSave = {
                     command = "clippy",
                 },

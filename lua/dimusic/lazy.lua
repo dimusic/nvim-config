@@ -120,7 +120,7 @@ require("lazy").setup({
 
     {
         "j-hui/fidget.nvim",
-        branch = "legacy",
+        tag = "v1.4.5",
     },
 
     {
@@ -203,7 +203,7 @@ require("lazy").setup({
         end,
     },
 
-    { "karb94/neoscroll.nvim" },
+    -- { "karb94/neoscroll.nvim" },
 
     { "christoomey/vim-tmux-navigator" },
 
