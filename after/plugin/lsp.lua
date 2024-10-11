@@ -216,6 +216,8 @@ cmp.setup({
                 fallback()
             end
         end),
+
+        ["<C-e>"] = cmp.mapping.complete(),
     }),
 })
 
