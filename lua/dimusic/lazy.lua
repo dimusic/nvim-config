@@ -203,7 +203,7 @@ require("lazy").setup({
         end,
     },
 
-    -- { "karb94/neoscroll.nvim" },
+    { "karb94/neoscroll.nvim" },
 
     { "christoomey/vim-tmux-navigator" },
 
