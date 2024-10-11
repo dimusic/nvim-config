@@ -15,7 +15,7 @@ local source_mapping = {
 
 local lsp_attach = function(client, bufnr)
     if nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json")(vim.fn.getcwd()) then
-        if client.name == "tsserver" then
+        if client.name == "ts_ls" then
             client.stop()
             return
         end
@@ -105,8 +105,8 @@ require("mason-lspconfig").setup({
             })
         end,
 
-        ["tsserver"] = function()
-            require("lspconfig").tsserver.setup({
+        ["ts_ls"] = function()
+            require("lspconfig").ts_ls.setup({
                 root_dir = nvim_lsp.util.root_pattern("package.json"),
                 single_file_support = false,
             })
