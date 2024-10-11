@@ -90,4 +90,5 @@ vim.cmd([[
 autocmd BufNewFile,BufRead *.wgsl set filetype=wgsl
 ]])
 
+vim.g.copilot_enabled = true
 vim.g.copilot_assume_mapped = true
