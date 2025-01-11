@@ -13,8 +13,27 @@ local source_mapping = {
     path = "📁",
 }
 
+local function depth(path)
+    return #vim.split(path, "/")
+end
+
 local lsp_attach = function(client, bufnr)
-    if nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json")(vim.fn.getcwd()) then
+    local deno_root = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json")(vim.fn.getcwd())
+    local ts_ls_root = nvim_lsp.util.root_pattern("package.json")(vim.fn.getcwd())
+
+    if deno_root and ts_ls_root then
+        if depth(deno_root) > depth(ts_ls_root) then
+            if client.name == "ts_ls" then
+                client.stop()
+                return
+            end
+        else
+            if client.name == "denols" then
+                client.stop()
+                return
+            end
+        end
+    elseif nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "import_map.json")(vim.fn.getcwd()) then
         if client.name == "ts_ls" then
             client.stop()
             return
