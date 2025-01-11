@@ -12,5 +12,11 @@ vim.api.nvim_set_keymap(
     { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp toggle focus=true<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+    "n",
+    "<C-]>",
+    "<cmd>Trouble lsp_definitions toggle focus=true<cr>",
+    { noremap = true, silent = true, desc = "Trouble lsp_definitions toggle" }
+)
 
 require("trouble").setup()

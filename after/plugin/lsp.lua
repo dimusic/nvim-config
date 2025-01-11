@@ -24,9 +24,9 @@ local lsp_attach = function(client, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr })
     -- local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "<C-]>", function()
-        vim.lsp.buf.definition()
-    end, { buffer = bufnr, remap = false, desc = "Go to Definition" })
+    -- vim.keymap.set("n", "<C-]>", function()
+    --     vim.lsp.buf.definition()
+    -- end, { buffer = bufnr, remap = false, desc = "Go to Definition" })
 
     vim.keymap.set(
         "n",
