@@ -56,11 +56,11 @@ require("lazy").setup({
         },
     },
 
-    {
-        "mrcjkb/rustaceanvim",
-        version = "^5", -- Recommended
-        lazy = false,
-    },
+    -- {
+    --     "mrcjkb/rustaceanvim",
+    --     version = "^5", -- Recommended
+    --     lazy = false,
+    -- },
 
     {
         { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },

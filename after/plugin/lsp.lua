@@ -110,7 +110,25 @@ require("mason-lspconfig").setup({
             require("lspconfig")[server_name].setup({})
         end,
 
-        ["rust_analyzer"] = lsp_zero.noop,
+        -- ["rust_analyzer"] = lsp_zero.noop,
+
+        ["rust_analyzer"] = function()
+            require("lspconfig").rust_analyzer.setup({
+                settings = {
+                    ["rust-analyzer"] = {
+                        checkOnSave = {
+                            command = "clippy",
+                        },
+
+                        inlayHints = {
+                            chainingHints = true,
+                            parameterHints = true,
+                            typeHints = true,
+                        },
+                    },
+                },
+            })
+        end,
 
         ["lua_ls"] = function()
             require("lspconfig").lua_ls.setup({
@@ -254,20 +272,3 @@ vim.diagnostic.config({
 -- ]])
 
 -- Rustaceanvim setup
-vim.g.rustaceanvim = {
-    tools = {},
-
-    server = {
-        -- on_attach = lsp_attach,
-
-        capabilities = lsp_zero.get_capabilities(),
-
-        default_settings = {
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy",
-                },
-            },
-        },
-    },
-}
