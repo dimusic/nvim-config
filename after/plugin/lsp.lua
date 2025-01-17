@@ -98,7 +98,8 @@ end
 lsp_zero.extend_lspconfig({
     sign_text = true,
     lsp_attach = lsp_attach,
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    capabilities = require("blink.cmp").get_lsp_capabilities(),
+    -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 require("mason").setup({
@@ -162,101 +163,115 @@ require("mason-lspconfig").setup({
                 end,
             })
         end,
+
+        ["pylsp"] = function()
+            require("lspconfig").pylsp.setup({
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            -- pylint = { enabled = "false" },
+                            -- pyflakes = { enabled = "false" },
+                            pycodestyle = { enabled = false },
+                        },
+                    },
+                },
+            })
+        end,
     },
 })
 
-local cmp = require("cmp")
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-
-    sources = cmp.config.sources({
-        -- { name = "copilot", priority_weight = 8 },
-        -- { name = "cmp_tabnine" },
-        { name = "nvim_lsp", priority_weight = 8 },
-    }, {
-        { name = "buffer", keyword_length = 2, max_item_count = 10, priority_weight = 7 },
-        { name = "path", priority_weight = 4 },
-    }),
-
-    sorting = {
-        priority_weight = 2,
-        comparators = {
-            -- require("copilot_cmp.comparators").prioritize,
-
-            cmp.config.compare.exact,
-            cmp.config.compare.locality,
-            cmp.config.compare.recently_used,
-            cmp.config.compare.score,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.offset,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
-    },
-    preselect = cmp.PreselectMode.None,
-    window = {
-        completion = cmp.config.window.bordered(),
-    },
-
-    formatting = {
-        fields = { "menu", "abbr", "kind" },
-        format = function(entry, vim_item)
-            vim_item.kind = require("lspkind").symbolic(vim_item.kind, { mode = "symbol" })
-            vim_item.menu = source_mapping[entry.source.name]
-            if entry.source.name == "cmp_tabnine" then
-                local detail = (entry.completion_item.data or {}).detail
-                vim_item.kind = ""
-                if detail and detail:find(".*%%.*") then
-                    vim_item.kind = vim_item.kind .. " " .. detail
-                end
-
-                if (entry.completion_item.data or {}).multiline then
-                    vim_item.kind = vim_item.kind .. " " .. "[ML]"
-                end
-            end
-            local maxwidth = 80
-            vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
-            return vim_item
-        end,
-    },
-
-    mapping = cmp.mapping.preset.insert({
-        ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = false,
-        }),
-
-        ["<Tab>"] = vim.schedule_wrap(function(fallback)
-            --cmp.mapping.abort()
-
-            if cmp.visible() then
-                cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
-                })()
-            else
-                fallback()
-            end
-        end),
-
-        ["<S-Tab>"] = vim.schedule_wrap(function(fallback)
-            cmp.mapping.abort()
-
-            local copilot_keys = vim.fn["copilot#Accept"]()
-            if copilot_keys ~= "" and type(copilot_keys) == "string" then
-                vim.api.nvim_feedkeys(copilot_keys, "i", true)
-            else
-                fallback()
-            end
-        end),
-
-        ["<C-e>"] = cmp.mapping.complete(),
-    }),
-})
+-- local cmp = require("cmp")
+-- cmp.setup({
+--     snippet = {
+--         expand = function(args)
+--             vim.snippet.expand(args.body)
+--         end,
+--     },
+--
+--     sources = cmp.config.sources({
+--         -- { name = "copilot", priority_weight = 8 },
+--         -- { name = "cmp_tabnine" },
+--         { name = "nvim_lsp", priority_weight = 8 },
+--     }, {
+--         { name = "buffer", keyword_length = 2, max_item_count = 10, priority_weight = 7 },
+--         { name = "path", priority_weight = 4 },
+--     }),
+--
+--     sorting = {
+--         priority_weight = 2,
+--         comparators = {
+--             -- require("copilot_cmp.comparators").prioritize,
+--
+--             cmp.config.compare.exact,
+--             cmp.config.compare.locality,
+--             cmp.config.compare.recently_used,
+--             cmp.config.compare.score,
+--             cmp.config.compare.sort_text,
+--             cmp.config.compare.offset,
+--             cmp.config.compare.length,
+--             cmp.config.compare.order,
+--         },
+--     },
+--     preselect = cmp.PreselectMode.None,
+--     window = {
+--         completion = cmp.config.window.bordered(),
+--     },
+--
+--     formatting = {
+--         fields = { "menu", "abbr", "kind" },
+--         format = function(entry, vim_item)
+--             vim_item.kind = require("lspkind").symbolic(vim_item.kind, { mode = "symbol" })
+--             vim_item.menu = source_mapping[entry.source.name]
+--             if entry.source.name == "cmp_tabnine" then
+--                 local detail = (entry.completion_item.data or {}).detail
+--                 vim_item.kind = ""
+--                 if detail and detail:find(".*%%.*") then
+--                     vim_item.kind = vim_item.kind .. " " .. detail
+--                 end
+--
+--                 if (entry.completion_item.data or {}).multiline then
+--                     vim_item.kind = vim_item.kind .. " " .. "[ML]"
+--                 end
+--             end
+--             local maxwidth = 80
+--             vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+--             return vim_item
+--         end,
+--     },
+--
+--     mapping = cmp.mapping.preset.insert({
+--         ["<CR>"] = cmp.mapping.confirm({
+--             behavior = cmp.ConfirmBehavior.Insert,
+--             select = false,
+--         }),
+--
+--         ["<Tab>"] = vim.schedule_wrap(function(fallback)
+--             --cmp.mapping.abort()
+--
+--             if cmp.visible() then
+--                 cmp.mapping.confirm({
+--                     behavior = cmp.ConfirmBehavior.Replace,
+--                     select = true,
+--                 })()
+--             else
+--                 fallback()
+--             end
+--         end),
+--
+--         ["<S-Tab>"] = vim.schedule_wrap(function(fallback)
+--             cmp.mapping.abort()
+--
+--             local copilot_keys = vim.fn["copilot#Accept"]()
+--             if copilot_keys ~= "" and type(copilot_keys) == "string" then
+--                 vim.api.nvim_feedkeys(copilot_keys, "i", true)
+--             else
+--                 fallback()
+--             end
+--         end),
+--
+--         ["<C-e>"] = cmp.mapping.complete(),
+--     }),
+-- })
 
 vim.diagnostic.config({
     virtual_text = true,
@@ -272,3 +287,20 @@ vim.diagnostic.config({
 -- ]])
 
 -- Rustaceanvim setup
+-- vim.g.rustaceanvim = {
+--     tools = {},
+--
+--     server = {
+--         -- on_attach = lsp_attach,
+--
+--         -- capabilities = lsp_zero.get_capabilities(),
+--
+--         default_settings = {
+--             ["rust-analyzer"] = {
+--                 checkOnSave = {
+--                     command = "clippy",
+--                 },
+--             },
+--         },
+--     },
+-- }
