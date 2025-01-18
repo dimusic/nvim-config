@@ -124,11 +124,20 @@ require("lazy").setup({
                     -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
                     -- keyword = { range = "full" },
 
-                    documentation = { auto_show = true, auto_show_delay_ms = 100 },
-                    ghost_text = { enabled = true },
+                    -- @alias blink.cmp.WindowBorder 'single' | 'double' | 'rounded' | 'solid' | 'shadow' | 'padded' | 'none' | blink.cmp.WindowBorderChar[]
+                    menu = { border = "rounded" },
+
+                    documentation = {
+                        auto_show = true,
+                        auto_show_delay_ms = 100,
+                        window = {
+                            border = "rounded",
+                        },
+                    },
+                    ghost_text = { enabled = false },
                 },
 
-                signature = { enabled = true },
+                signature = { enabled = true, window = { border = "rounded" } },
             },
             opts_extend = { "sources.default" },
         },
