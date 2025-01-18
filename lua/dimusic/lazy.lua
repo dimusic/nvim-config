@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.5",
+        tag = "0.1.8",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
 
@@ -68,17 +68,6 @@ require("lazy").setup({
         { "neovim/nvim-lspconfig" },
         { "williamboman/mason.nvim" },
         { "williamboman/mason-lspconfig.nvim" },
-        {
-            "TabbyML/vim-tabby",
-            lazy = false,
-            dependencies = {
-                "neovim/nvim-lspconfig",
-            },
-            init = function()
-                vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
-                vim.g.tabby_inline_completion_trigger = "auto"
-            end,
-        },
 
         -- Autocompletion
         {
@@ -144,6 +133,15 @@ require("lazy").setup({
     },
 
     {
+        "TabbyML/vim-tabby",
+        lazy = false,
+        init = function()
+            vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
+            vim.g.tabby_inline_completion_trigger = "auto"
+        end,
+    },
+
+    {
         "nvimtools/none-ls.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
@@ -186,7 +184,7 @@ require("lazy").setup({
 
     {
         "j-hui/fidget.nvim",
-        tag = "v1.4.5",
+        tag = "v1.5.0",
     },
 
     {
