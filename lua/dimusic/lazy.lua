@@ -166,10 +166,10 @@ require("lazy").setup({
     { "windwp/nvim-autopairs" },
 
     {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup()
-        end,
+        "folke/ts-comments.nvim",
+        opts = {},
+        event = "VeryLazy",
+        enabled = vim.fn.has("nvim-0.10.0") == 1,
     },
 
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
