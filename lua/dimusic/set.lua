@@ -38,6 +38,7 @@ vim.opt.cursorline = true
 vim.opt.colorcolumn = "120"
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 vim.opt.incsearch = true
 vim.opt.smartcase = true
