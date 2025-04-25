@@ -89,7 +89,20 @@ require("lazy").setup({
                 -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
                 -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
                 -- See the full "keymap" documentation for information on defining your own keymap.
-                keymap = { preset = "super-tab" },
+                keymap = {
+                    preset = "super-tab",
+
+                    ["<S-Tab>"] = {
+                        function(cmp)
+                            -- cmp.abort()
+
+                            local copilot_keys = vim.fn["copilot#Accept"]()
+                            if copilot_keys ~= "" and type(copilot_keys) == "string" then
+                                vim.api.nvim_feedkeys(copilot_keys, "i", true)
+                            end
+                        end,
+                    },
+                },
 
                 appearance = {
                     -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -214,7 +227,7 @@ require("lazy").setup({
     --     end,
     -- },
 
-    -- { "github/copilot.vim" },
+    { "github/copilot.vim" },
 
     { "vim-scripts/zoom.vim" },
 
