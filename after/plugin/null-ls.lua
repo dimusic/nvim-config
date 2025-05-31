@@ -7,6 +7,7 @@ null_ls.setup({
             extra_args = { "--indent-type", "Spaces", "--indent-width", "4" },
         }),
         null_ls.builtins.formatting.prettierd.with({ extra_args = { "--print-width=120", "--tab-width=4" } }),
+        require("none-ls.formatting.ruff_format"),
     },
 
     on_attach = function(client, bufnr)

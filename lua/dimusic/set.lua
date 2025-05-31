@@ -91,7 +91,7 @@ vim.cmd([[
 autocmd BufNewFile,BufRead *.wgsl set filetype=wgsl
 ]])
 
-vim.g.copilot_enabled = false
+vim.g.copilot_enabled = true
 vim.g.copilot_assume_mapped = true
 
 vim.g.tabby_inline_completion_keybinding_accept = "<S-Tab>"

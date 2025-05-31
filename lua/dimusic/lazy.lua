@@ -156,7 +156,7 @@ require("lazy").setup({
 
     {
         "nvimtools/none-ls.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim", "nvimtools/none-ls-extras.nvim" },
     },
 
     { "onsails/lspkind.nvim" },
@@ -197,7 +197,7 @@ require("lazy").setup({
 
     {
         "j-hui/fidget.nvim",
-        tag = "v1.5.0",
+        tag = "v1.6.1",
     },
 
     {

@@ -169,15 +169,25 @@ require("mason-lspconfig").setup({
             })
         end,
 
-        ["pylsp"] = function()
-            require("lspconfig").pylsp.setup({
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            -- pylint = { enabled = "false" },
-                            -- pyflakes = { enabled = "false" },
-                            pycodestyle = { enabled = false },
-                        },
+        -- ["pylsp"] = function()
+        --     require("lspconfig").pylsp.setup({
+        --         settings = {
+        --             pylsp = {
+        --                 plugins = {
+        --                     -- pylint = { enabled = "false" },
+        --                     -- pyflakes = { enabled = "false" },
+        --                     pycodestyle = { enabled = false },
+        --                 },
+        --             },
+        --         },
+        --     })
+        -- end,
+
+        ["ty"] = function()
+            require("lspconfig").ty.setup({
+                init_options = {
+                    settings = {
+                        -- ty language server settings go here
                     },
                 },
             })
